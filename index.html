@@ -1,0 +1,82 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Narnia Bookshop</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+      body {
+        background: #eee;
+        max-width: 960px;
+        margin: 20px auto;
+      }
+      p,
+      h3,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style-type: none;
+        background: #fff;
+        margin: 20px auto;
+        padding: 10px 20px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      li.fav {
+        background: #ff9ed2;
+        color: white;
+      }
+
+      .box {
+        padding: 100px 0;
+        width: 400px;
+        text-align: center;
+        background: lightgray;
+        margin: 20px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My first bookshop with Vue.js</h1>
+    <div id="app">
+      <!-- attribute binding  -->
+      <h2><a :href="url">You can order these books here</a></h2>
+
+      <div v-if="showBooks">
+        <ul>
+          <li
+            v-for="book in books"
+            :class="{fav: book.isFav}"
+            @click="toggleFavBooks(book)"
+          >
+            <img :src="book.img" :alt="book.title" />
+            <h3>{{book.title}}</h3>
+            <h2>{{book.author}}</h2>
+          </li>
+        </ul>
+      </div>
+
+      <button @click="toggleShowBooks">
+        <span v-if="showBooks">Hide Books</span>
+        <span v-else>Show Books</span>
+      </button>
+
+      <br />
+      <!-- mouse events -->
+      <!-- <div class="box" @mouseover="handleEvent($event, 5)">
+        mouseover (enter)
+      </div>
+      <div class="box" @mouseleave="handleEvent">mouseleave</div>
+      <div class="box" @dblclick="handleEvent">double click</div> -->
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
